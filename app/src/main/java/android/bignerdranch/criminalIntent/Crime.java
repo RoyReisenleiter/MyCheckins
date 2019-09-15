@@ -1,5 +1,5 @@
 package android.bignerdranch.criminalIntent;
-//new version for task 2
+//new version for task 2*
 import java.util.Date;
 import java.util.UUID;
 
