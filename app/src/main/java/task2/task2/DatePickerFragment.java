@@ -1,4 +1,4 @@
-package android.bignerdranch.criminalIntent;
+package task2.task2;
 
 import android.app.Activity;
 import android.app.AlertDialog;

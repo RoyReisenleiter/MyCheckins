@@ -1,22 +1,24 @@
-package android.bignerdranch.criminalIntent;
+package task2.task2;
 
-import android.bignerdranch.criminalIntent.database.CrimeBaseHelper;
-import android.bignerdranch.criminalIntent.database.CrimeCursorWrapper;
-import android.bignerdranch.criminalIntent.database.CrimeDbSchema;
-import android.bignerdranch.criminalIntent.database.CrimeDbSchema.CrimeTable;
+import task2.task2.database.CrimeBaseHelper;
+import task2.task2.database.CrimeCursorWrapper;
+import task2.task2.database.CrimeDbSchema.CrimeTable;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static android.content.ContentValues.TAG;
+
 public class CrimeLab {
     private static CrimeLab sCrimeLab;
 
-    //private List<Crime> mCrimes;
+    private List<Crime> mCrimes;//comment this out
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
@@ -48,6 +50,16 @@ public class CrimeLab {
         mDatabase.insert(CrimeTable.NAME, null, values);
     }
 
+
+    public void deleteCrime(Crime c) {
+        mDatabase.delete(
+                CrimeTable.NAME,
+                CrimeTable.Cols.UUID + "=?",
+                new String[] {c.getId().toString()}
+        );
+    }
+
+
     public List<Crime> getCrimes() {
         //return mCrimes;
         //return new ArrayList<>();
@@ -65,9 +77,8 @@ public class CrimeLab {
             cursor.close();
         }
         return crimes;
-
-
     }
+
     public Crime getCrime(UUID id) {
         /*for (Crime crime : mCrimes) {
             if (crime.getId().equals(id)) {
@@ -88,6 +99,7 @@ public class CrimeLab {
         } finally {
             cursor.close();
         }
+
 
     }
     public void updateCrime(Crime crime){
@@ -124,6 +136,9 @@ public class CrimeLab {
         values.put(CrimeTable.Cols.SUSPECT, crime.getSuspect());
 
         return values;
+
     }
+
+
 
 }

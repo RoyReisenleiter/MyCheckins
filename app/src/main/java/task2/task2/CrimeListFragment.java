@@ -1,4 +1,4 @@
-package android.bignerdranch.criminalIntent;
+package task2.task2;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,18 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.LayoutInflaterCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.UUID;
 
-import static android.bignerdranch.criminalIntent.CrimeActivity.newIntent;
+import static task2.task2.CrimeActivity.newIntent;
 
 public class CrimeListFragment extends Fragment {
 
@@ -64,9 +62,10 @@ public class CrimeListFragment extends Fragment {
         }else{
             subtitleItem.setTitle(R.string.show_subtitle);
         }
+
     }
 
-    @Override
+        @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.new_crime:

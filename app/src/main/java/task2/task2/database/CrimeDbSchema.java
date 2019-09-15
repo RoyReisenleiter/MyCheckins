@@ -1,4 +1,4 @@
-package android.bignerdranch.criminalIntent.database;
+package task2.task2.database;
 
 public class CrimeDbSchema {
 

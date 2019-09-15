@@ -1,7 +1,7 @@
-package android.bignerdranch.criminalIntent.database;
+package task2.task2.database;
 
-import android.bignerdranch.criminalIntent.Crime;
-import android.bignerdranch.criminalIntent.database.CrimeDbSchema.CrimeTable;
+import task2.task2.Crime;
+import task2.task2.database.CrimeDbSchema.CrimeTable;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 

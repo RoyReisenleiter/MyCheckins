@@ -1,6 +1,6 @@
-package android.bignerdranch.criminalIntent.database;
+package task2.task2.database;
 
-import android.bignerdranch.criminalIntent.database.CrimeDbSchema.CrimeTable;
+import task2.task2.database.CrimeDbSchema.CrimeTable;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
