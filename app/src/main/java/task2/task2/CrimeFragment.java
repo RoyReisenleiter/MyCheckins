@@ -32,7 +32,7 @@ public class CrimeFragment extends Fragment {
     private EditText mTitleField;
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
-    //private Button mRemoveButton;
+    private Button mDeleteButton;
     private Button mSuspectButton;
     private Button mReportButton;
     private static final String DIALOG_DATE = "DialogDate";
@@ -98,6 +98,16 @@ public class CrimeFragment extends Fragment {
 
         });
 
+        mDeleteButton = v.findViewById(R.id.remove_crime);
+        mDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CrimeLab.get(getActivity()).deleteCrime(mCrime);
+                getActivity().finish();
+            }
+        });
+
+
         mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
         mSolvedCheckBox.setChecked(mCrime.isSolved());
         mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -138,7 +148,8 @@ public class CrimeFragment extends Fragment {
         return v;
     }
 
-    @Override
+    //stuff for delete crime
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.remove_crime:
@@ -151,8 +162,27 @@ public class CrimeFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
+    /*@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (NavUtils.getParentActivityName(getActivity()) != null) {
+                    NavUtils.navigateUpFromSameTask(getActivity());
+                }
+                return true;
+            // create menu options for deleting crimes | challenge chapter 18
+            case R.id.remove_crime:
+                CrimeLab.get(getActivity()).deleteCrime(mCrime);
+                // Launch CrimeListActivity
+                Intent i = new Intent(getActivity(), CrimeListActivity.class);
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }*/
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

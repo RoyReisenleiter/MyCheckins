@@ -18,7 +18,7 @@ import static android.content.ContentValues.TAG;
 public class CrimeLab {
     private static CrimeLab sCrimeLab;
 
-    private List<Crime> mCrimes;//comment this out
+    //private List<Crime> mCrimes;//comment this out
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
@@ -50,7 +50,7 @@ public class CrimeLab {
         mDatabase.insert(CrimeTable.NAME, null, values);
     }
 
-
+    //stuff for delete crime
     public void deleteCrime(Crime c) {
         mDatabase.delete(
                 CrimeTable.NAME,
