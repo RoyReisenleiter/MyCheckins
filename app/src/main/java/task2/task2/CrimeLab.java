@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -41,6 +42,11 @@ public class CrimeLab {
             mCrimes.add(crime);
         }*/
 
+    }
+
+    public File getPhotoFile(Crime crime) {
+        File filesDir = mContext.getFilesDir();
+        return new File(filesDir, crime.getPhotoFilename());
     }
 
     public void addCrime(Crime c) {
@@ -102,6 +108,7 @@ public class CrimeLab {
 
 
     }
+
     public void updateCrime(Crime crime){
         String uuidString = crime.getId().toString();
         ContentValues values = getContentValues(crime);

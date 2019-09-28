@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="com.bignerdranch.android.photogallery.PRIVATE" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,6 +27,14 @@
         <activity
             android:name=".PhotoPageActivity" />
         <service android:name=".PollService"/>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="task2.task2.criminalintent.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+        </provider>
+
     </application>
 
 </manifest>
