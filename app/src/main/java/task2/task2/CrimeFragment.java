@@ -14,6 +14,9 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -37,9 +40,10 @@ public class CrimeFragment extends Fragment {
     private Button mReportButton;
     private static final String DIALOG_DATE = "DialogDate";
     private static final String ARG_CRIME_ID = "crime_id";
-
     private static final int REQUEST_CONTACT = 1;
     private static final int REQUEST_DATE = 0;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,11 @@ public class CrimeFragment extends Fragment {
         UUID crimeId = (UUID) getActivity().getIntent()
                 .getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
+
+
     }
+
+
 
     @Override
     public void onPause() {
@@ -77,6 +85,7 @@ public class CrimeFragment extends Fragment {
                 dialog.show(manager, DIALOG_DATE);
             }
         });
+
 
         mTitleField = (EditText) v.findViewById(R.id.crime_title);
         mTitleField.setText(mCrime.getTitle());
