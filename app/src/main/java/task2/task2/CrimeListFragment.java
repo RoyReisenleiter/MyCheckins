@@ -40,8 +40,6 @@ public class CrimeListFragment extends Fragment {
 
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_crime_list, container, false);
@@ -138,6 +136,7 @@ public class CrimeListFragment extends Fragment {
         private TextView mDateTextView;
         private Crime mCrime;
         private ImageView mSolvedImageView;
+        private ImageView mDislikedImageView;
 
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -147,6 +146,7 @@ public class CrimeListFragment extends Fragment {
             mTitleTextView = (TextView) itemView.findViewById(R.id.crime_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.crime_date);
             mSolvedImageView = (ImageView) itemView.findViewById(R.id.crime_solved);
+            mDislikedImageView = (ImageView) itemView.findViewById(R.id.dislike);
         }
 
         public void bind(Crime crime) {
@@ -154,6 +154,7 @@ public class CrimeListFragment extends Fragment {
             mTitleTextView.setText(mCrime.getTitle());
             mDateTextView.setText(mCrime.getDate().toString());
             mSolvedImageView.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);
+            mDislikedImageView.setVisibility(crime.isDisliked() ? View.VISIBLE : View.GONE);
         }
 
         @Override

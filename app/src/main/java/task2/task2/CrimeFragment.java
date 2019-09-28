@@ -42,6 +42,7 @@ public class CrimeFragment extends Fragment {
     private EditText mTitleField;
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
+    private CheckBox mDislikeCheckBox;
     private Button mDeleteButton;
     private Button mSuspectButton;
     private Button mReportButton;
@@ -175,13 +176,22 @@ public class CrimeFragment extends Fragment {
             }
         });
 
-
         mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
         mSolvedCheckBox.setChecked(mCrime.isSolved());
         mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mCrime.setSolved(isChecked);
+            }
+
+        });
+
+        mDislikeCheckBox = (CheckBox)v.findViewById(R.id.dislike);
+        mDislikeCheckBox.setChecked(mCrime.isDisliked());
+        mDislikeCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mCrime.setDisliked(isChecked);
             }
 
         });
