@@ -1,3 +1,4 @@
+/*
 package task2.task2;
 
 import android.content.Context;
@@ -18,3 +19,4 @@ public class PhotoPageActivity extends SingleFragmentActivity {
         return PhotoPageFragment.newInstance(getIntent().getData());
     }
 }
+*/

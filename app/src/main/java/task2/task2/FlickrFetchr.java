@@ -1,3 +1,4 @@
+/*
 package task2.task2;
 
 import android.net.Uri;
@@ -62,3 +63,4 @@ public class FlickrFetchr {
 
 
 }
+*/

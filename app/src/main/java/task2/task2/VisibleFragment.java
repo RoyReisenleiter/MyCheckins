@@ -1,3 +1,4 @@
+/*
 package task2.task2;
 
 import android.content.BroadcastReceiver;
@@ -32,3 +33,4 @@ public abstract class VisibleFragment extends Fragment {
         }
     };
 }
+*/

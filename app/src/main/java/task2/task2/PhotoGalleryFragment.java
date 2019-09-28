@@ -1,3 +1,4 @@
+/*
 package task2.task2;
 
 import android.os.AsyncTask;
@@ -101,3 +102,4 @@ public class PhotoGalleryFragment extends VisibleFragment {
 
 
 }
+*/

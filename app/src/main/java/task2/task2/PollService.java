@@ -1,3 +1,4 @@
+/*
 package task2.task2;
 
 import android.app.IntentService;
@@ -22,3 +23,4 @@ public class PollService extends IntentService {
         Log.i(TAG, "Received an intent: " + intent);
     }
 }
+*/

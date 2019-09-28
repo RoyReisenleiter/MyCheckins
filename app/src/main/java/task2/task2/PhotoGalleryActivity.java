@@ -1,3 +1,4 @@
+/*
 package task2.task2;
 
 import android.content.Context;
@@ -19,3 +20,4 @@ public class PhotoGalleryActivity extends SingleFragmentActivity {
     }
 
 }
+*/
