@@ -176,12 +176,29 @@ public class CrimeFragment extends Fragment {
             }
         });
 
-        mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
+        /*mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
         mSolvedCheckBox.setChecked(mCrime.isSolved());
         mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mCrime.setSolved(isChecked);
+            }
+
+        });*/
+
+        mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
+        mSolvedCheckBox.setChecked(mCrime.isSolved());
+        mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(mDislikeCheckBox.isChecked()){
+                    mDislikeCheckBox.setChecked(false);
+
+                }
+                mCrime.setSolved(isChecked);
+                //mSolvedCheckBox.setChecked(true);
+
+
             }
 
         });
@@ -191,7 +208,12 @@ public class CrimeFragment extends Fragment {
         mDislikeCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(mSolvedCheckBox.isChecked()){
+                    mSolvedCheckBox.setChecked(false);
+
+                }
                 mCrime.setDisliked(isChecked);
+                //mDislikeCheckBox.setChecked(true);
             }
 
         });
