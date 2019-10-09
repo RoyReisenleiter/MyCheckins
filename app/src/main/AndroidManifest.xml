@@ -3,9 +3,12 @@
     package="task2.task2">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="com.bignerdranch.android.photogallery.PRIVATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="com.bignerdranch.android.photogallery.PRIVATE"/>
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -28,8 +31,11 @@
         <activity
             android:name="task2.task2.CrimeActivity"
             android:parentActivityName="task2.task2.CrimeListActivity">
-
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="•	AIzaSyCpOCxsPbl-tXlRIV4nzhnRibIYymdznfY"
 
         <provider
             android:name="androidx.core.content.FileProvider"
