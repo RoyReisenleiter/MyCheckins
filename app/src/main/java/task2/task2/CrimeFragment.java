@@ -30,6 +30,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NavUtils;
@@ -39,8 +40,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 
 import java.io.File;
@@ -64,6 +67,9 @@ public class CrimeFragment extends Fragment {
     private GoogleApiClient mClient;
     private File mPhotoFile;
     private ImageView mPhotoView;
+    private TextView mLocationField;
+    private Button mShowMapButton;
+    private  boolean mIsNewReceipt;
     private static final String DIALOG_DATE = "DialogDate";
     private static final String ARG_CRIME_ID = "crime_id";
     private static final int REQUEST_CONTACT = 1;
@@ -82,29 +88,46 @@ public class CrimeFragment extends Fragment {
         mClient = new GoogleApiClient.Builder(getActivity())
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+
                     @Override
                     public void onConnected(@Nullable Bundle bundle) {
-                        LocationRequest request = LocationRequest.create();
-                        request.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-                        request.setNumUpdates(1);
-                        request.setInterval(0);
-
-                        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                            return;
-                        }
-                        LocationServices.FusedLocationApi.requestLocationUpdates(mClient, request, new LocationListener() {
-                            @Override
-                            public void onLocationChanged(Location location) {
-                                Log.i("LOCATION", "Got a fix" + Location);
+                        if (mIsNewReceipt){
+                            LocationRequest request = LocationRequest.create();
+                            request.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+                            request.setNumUpdates(1);
+                            request.setInterval(0);
+                            if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                                    != PackageManager.PERMISSION_GRANTED) {
+                                return;
                             }
-                        });
+                            LocationServices.getFusedLocationProviderClient(getActivity())
+                                    .requestLocationUpdates(request, new LocationCallback() {
+                                        @Override
+                                        public void onLocationResult(LocationResult locationResult) {
+                                            super.onLocationResult(locationResult);
+                                            Location location = locationResult.getLastLocation();
+                                            setLocation(location);
+
+                                        }
+                                    }, null);
+                        }
                     }
+
                     @Override
                     public void onConnectionSuspended(int i) {
 
                     }
                 })
                 .build();
+    }
+
+    private void setLocation(Location location) {
+        mCrime.setLongitude(location.getLongitude());
+        mCrime.setLatitude(location.getLatitude());
+        mLocationField.setText(
+                getString(R.string.location_text,
+                        mCrime.getLatitude(),
+                        mCrime.getLongitude()));
 
     }
 
@@ -133,6 +156,17 @@ public class CrimeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crime, container, false);
+
+        mLocationField = v.findViewById(R.id.location_label);
+        mShowMapButton = v.findViewById(R.id.map_button);
+        mShowMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = MapsActivity.newIntent(getContext(),
+                        mCrime.getLatitude(), mCrime.getLongitude());
+                startActivity(intent);
+            }
+        });
 
         mDateButton = (Button) v.findViewById(R.id.crime_date);
         updateDate();

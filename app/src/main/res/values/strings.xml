@@ -22,5 +22,10 @@
     <string name="crime_report_subject">CriminalIntent Crime Report</string>
     <string name="send_report">Send crime report via</string>
     <string name="delete_crime">Delete Activity</string>
+
     <string name="map_button">Map</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="location_title">Map Location</string>
+    <string name="location_text">lat: %1$f\nlong: %2$f</string>
+    <string name="show_map_text">Show Map</string>
 </resources>

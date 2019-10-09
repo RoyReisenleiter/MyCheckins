@@ -83,6 +83,7 @@
         android:layout_height="wrap_content"
         android:text="@string/crime_report_text"/>
 
+
     <Button
         android:id="@+id/remove_crime"
         android:layout_width="match_parent"
@@ -108,5 +109,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dislike" />
+
+    <TextView
+        android:id="@+id/location_label"
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="44dp"
+        android:layout_height="48dp" />
 
 </LinearLayout>

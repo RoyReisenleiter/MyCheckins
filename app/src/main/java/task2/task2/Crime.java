@@ -12,6 +12,8 @@ public class Crime {
     private boolean mSolved;
     private boolean mDisliked;
     private String mSuspect;
+    private Double mLatitude;
+    private Double mLongitude;
 
     public Crime() {
         this(UUID.randomUUID());
@@ -54,6 +56,11 @@ public class Crime {
     public void setDisliked(boolean disliked) {
         mDisliked = disliked;
     }
+
+    public Double getLatitude() { return mLatitude; }
+    public Double getLongitude() { return mLongitude; }
+    public void setLatitude(Double latitude) {mLatitude = latitude;}
+    public void setLongitude(Double longitude) {mLongitude = longitude;}
 
 
     public String getSuspect() {

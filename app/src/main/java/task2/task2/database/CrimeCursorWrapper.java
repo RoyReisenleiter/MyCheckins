@@ -20,6 +20,8 @@ public class CrimeCursorWrapper extends CursorWrapper {
         int isSolved = getInt(getColumnIndex(CrimeTable.Cols.SOLVED));
         String suspect = getString(getColumnIndex(CrimeTable.Cols.SUSPECT));
         int isDisliked = getInt(getColumnIndex(CrimeTable.Cols.DISLIKED));
+        Double latitude = getDouble(getColumnIndex(CrimeTable.Cols.LATITUDE));
+        Double longitude = getDouble(getColumnIndex(CrimeTable.Cols.LONGITUDE));
 
         Crime crime = new Crime(UUID.fromString(uuidString));
         crime.setTitle(title);
@@ -27,6 +29,8 @@ public class CrimeCursorWrapper extends CursorWrapper {
         crime.setSolved(isSolved != 0);
         crime.setDisliked(isDisliked != 0);
         crime.setSuspect(suspect);
+        crime.setLongitude(longitude);
+        crime.setLatitude(latitude);
 
         return crime;
 
