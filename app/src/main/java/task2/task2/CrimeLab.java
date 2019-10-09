@@ -63,6 +63,7 @@ public class CrimeLab {
                 CrimeTable.Cols.UUID + "=?",
                 new String[] {c.getId().toString()}
         );
+
     }
 
 

@@ -166,7 +166,7 @@ public class CrimeFragment extends Fragment {
             }
 
         });
-
+        // need to use this button
         mDeleteButton = v.findViewById(R.id.remove_crime);
         mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override

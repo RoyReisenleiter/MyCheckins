@@ -16,12 +16,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 import java.util.UUID;
+
+import task2.task2.database.CrimeDbSchema;
 
 import static task2.task2.CrimeActivity.newIntent;
 
@@ -31,6 +34,8 @@ public class CrimeListFragment extends Fragment {
     private CrimeAdapter mAdapter;
     private boolean mSubtitleVisible;
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
+    private Button mDeleteButton;
+    private Crime mCrime;
 
 
     @Override
@@ -56,7 +61,6 @@ public class CrimeListFragment extends Fragment {
 
         return view;
     }
-
 
 
     @Override
@@ -93,6 +97,15 @@ public class CrimeListFragment extends Fragment {
                         .webIntent(getActivity(),"http:www.wikihow.com/Check-In-on_Facebook");
                 startActivity(i);
                 return true;
+            /*case R.id.delete_item:
+                Crime mCrime = new Crime();
+                //CrimeLab crimeLab = CrimeLab.get(getActivity());
+                CrimeLab.get(getActivity()).deleteCrime(mCrime);
+                Intent del = CrimeActivity
+                        .newIntent(getActivity(), mCrime.getId());
+                startActivity(del);
+                mAdapter.notifyDataSetChanged();
+                updateUI();*/
                 default:
                     return super.onOptionsItemSelected(item);
         }
@@ -189,6 +202,7 @@ public class CrimeListFragment extends Fragment {
 
         }
 
+
         @Override
         public int getItemCount() {
             return mCrimes.size();
@@ -198,12 +212,19 @@ public class CrimeListFragment extends Fragment {
             mCrimes = crimes;
         }
 
+
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(SAVED_SUBTITLE_VISIBLE, mSubtitleVisible);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateUI();
     }
 
 }

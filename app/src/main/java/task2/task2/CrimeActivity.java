@@ -17,6 +17,12 @@ public class CrimeActivity extends SingleFragmentActivity {
         return intent;
     }
 
+    /*public static final Intent newDelIntent(Context packageContext, UUID crimeId){
+        Intent delIntent = new Intent(packageContext, CrimeActivity.class);
+        delIntent.removeExtra(EXTRA_CRIME_ID);
+        return delIntent;
+    }*/
+
     /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
