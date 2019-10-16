@@ -28,6 +28,7 @@
     <string name="map_button">Map</string>
     <string name="title_activity_maps">Map</string>
     <string name="location_title">Map Location</string>
+    <!--<string name="location_text">lat: 37.4220\nlong: -122.0840</string>-->
     <string name="location_text">lat: %1$f\nlong: %2$f</string>
     <string name="show_map_text">Show Map</string>
     <string name="google_maps_key">AIzaSyCpOCxsPbl-tXlRIV4nzhnRibIYymdznfY</string>

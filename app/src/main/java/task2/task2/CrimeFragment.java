@@ -32,6 +32,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NavUtils;
 import androidx.core.content.ContextCompat;
@@ -71,13 +72,27 @@ public class CrimeFragment extends Fragment {
     private ImageView mPhotoView;
     private TextView mLocationField;
     private Button mShowMapButton;
-    private  boolean mIsNewReceipt;
+    private  boolean mIsNewCrime;
+    private static final String ARG_IS_NEW_CRIME = "is_new_crime";
     private static final String DIALOG_DATE = "DialogDate";
     private static final String ARG_CRIME_ID = "crime_id";
     private static final int REQUEST_CONTACT = 1;
     private static final int REQUEST_DATE = 0;
     private static final int REQUEST_PHOTO = 2;
 
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mClient.connect();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mClient.disconnect();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,7 +108,7 @@ public class CrimeFragment extends Fragment {
 
                     @Override
                     public void onConnected(@Nullable Bundle bundle) {
-                        if (mIsNewReceipt){
+                       // if (mIsNewCrime){
                             LocationRequest request = LocationRequest.create();
                             request.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
                             request.setNumUpdates(1);
@@ -112,7 +127,7 @@ public class CrimeFragment extends Fragment {
 
                                         }
                                     }, null);
-                        }
+                       // }
                     }
 
                     @Override
@@ -133,18 +148,6 @@ public class CrimeFragment extends Fragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mClient.connect();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        mClient.disconnect();
-    }
-
 
     @Override
     public void onPause() {
@@ -155,9 +158,11 @@ public class CrimeFragment extends Fragment {
     }
 
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,@Nullable ViewGroup container,@Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crime, container, false);
+        PackageManager packageManager = getActivity().getPackageManager();
 
         mLocationField = v.findViewById(R.id.location_label);
         mShowMapButton = v.findViewById(R.id.map_button);
@@ -195,7 +200,7 @@ public class CrimeFragment extends Fragment {
             }
         });
 
-        PackageManager packageManager = getActivity().getPackageManager();
+        //PackageManager packageManager = getActivity().getPackageManager();
         if (packageManager.resolveActivity(pickContact,
                 PackageManager.MATCH_DEFAULT_ONLY) == null) {
             mContactButton.setEnabled(false);
@@ -301,8 +306,9 @@ public class CrimeFragment extends Fragment {
             }
         });
         //this may not be needed
-        if (mIsNewReceipt){
+        if (mIsNewCrime){
             mDeleteButton.setVisibility(View.INVISIBLE);
+
         } else {
             mLocationField.setText(
                     getString(R.string.location_text,
@@ -435,6 +441,7 @@ public class CrimeFragment extends Fragment {
     private void updateDate() {
         mDateButton.setText(mCrime.getDate().toString());
     }
+
 
     private String getCrimeReport() {
         String solvedString = null;
