@@ -34,7 +34,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Crime Date"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/crime_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crime_title"
@@ -42,6 +44,22 @@
         tools:layout_conversion_absoluteWidth="395dp"
         tools:layout_conversion_wrapHeight="50"
         tools:layout_conversion_wrapWidth="185" />
+
+    <TextView
+        android:id="@id/place_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="Place"
+        app:layout_constraintEnd_toEndOf="@+id/crime_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crime_date"
+        tools:layout_conversion_absoluteHeight="19dp"
+        tools:layout_conversion_absoluteWidth="395dp"
+        tools:layout_conversion_wrapHeight="50"
+        tools:layout_conversion_wrapWidth="185" />
+
 
     <ImageView
         android:id="@+id/crime_solved"
@@ -53,7 +71,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_action_name_happyface" />
+        app:srcCompat="@drawable/smiley_face" />
 
     <ImageView
         android:id="@+id/dislike"
@@ -65,6 +83,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_action_name_sadface" />
+        app:srcCompat="@drawable/sad_face" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -55,6 +55,8 @@ public class CrimeFragment extends Fragment {
 
     private Crime mCrime;
     private EditText mTitleField;
+    private EditText mPlaceField;
+    private EditText mDetailsField;
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
     private CheckBox mDislikeCheckBox;
@@ -250,6 +252,45 @@ public class CrimeFragment extends Fragment {
             }
 
         });
+
+        mPlaceField = (EditText) v.findViewById(R.id.place_title);
+        mPlaceField.setText(mCrime.getPlace());
+        mPlaceField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                mCrime.setPlace(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        mDetailsField = (EditText) v.findViewById(R.id.details_title);
+        mDetailsField.setText(mCrime.getDetails());
+        mDetailsField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                mCrime.setDetails(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         // need to use this button
         mDeleteButton = v.findViewById(R.id.remove_crime);
         mDeleteButton.setOnClickListener(new View.OnClickListener() {
@@ -259,6 +300,15 @@ public class CrimeFragment extends Fragment {
                 getActivity().finish();
             }
         });
+        //this may not be needed
+        if (mIsNewReceipt){
+            mDeleteButton.setVisibility(View.INVISIBLE);
+        } else {
+            mLocationField.setText(
+                    getString(R.string.location_text,
+                            mCrime.getLatitude(),
+                            mCrime.getLongitude()));
+        }
 
         /*mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
         mSolvedCheckBox.setChecked(mCrime.isSolved());

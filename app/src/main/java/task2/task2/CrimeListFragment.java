@@ -147,6 +147,8 @@ public class CrimeListFragment extends Fragment {
 
         private TextView mTitleTextView;
         private TextView mDateTextView;
+        private TextView mPlaceTitleView;
+        private TextView mDetailsTitleView;
         private Crime mCrime;
         private ImageView mSolvedImageView;
         private ImageView mDislikedImageView;
@@ -157,6 +159,8 @@ public class CrimeListFragment extends Fragment {
             itemView.setOnClickListener(this);
 
             mTitleTextView = (TextView) itemView.findViewById(R.id.crime_title);
+            //mDetailsTitleView = (TextView) itemView.findViewById(R.id.details_title);
+            mPlaceTitleView = (TextView) itemView.findViewById(R.id.place_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.crime_date);
             mSolvedImageView = (ImageView) itemView.findViewById(R.id.crime_solved);
             mDislikedImageView = (ImageView) itemView.findViewById(R.id.dislike);
@@ -165,6 +169,8 @@ public class CrimeListFragment extends Fragment {
         public void bind(Crime crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
+            //mDetailsTitleView.setText(mCrime.getDetails());
+            mPlaceTitleView.setText(mCrime.getPlace());
             mDateTextView.setText(mCrime.getDate().toString());
             mSolvedImageView.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);
             mDislikedImageView.setVisibility(crime.isDisliked() ? View.VISIBLE : View.GONE);

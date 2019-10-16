@@ -8,6 +8,8 @@ public class Crime {
 
     private UUID mId;
     private String mTitle;
+    private String mPlace;
+    private String mDetails;
     private Date mDate;
     private boolean mSolved;
     private boolean mDisliked;
@@ -34,8 +36,22 @@ public class Crime {
         return mTitle;
     }
 
+    public String getPlace() {
+        return mPlace;
+    }
+
+    public String getDetails() {
+        return mDetails;
+    }
+
     public void setTitle(String title) {
         mTitle = title;
+    }
+    public void setPlace(String place) {
+        mPlace = place;
+    }
+    public void setDetails(String details) {
+        mDetails = details;
     }
 
     public Date getDate() {

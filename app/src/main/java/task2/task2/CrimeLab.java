@@ -139,6 +139,8 @@ public class CrimeLab {
         values.put(CrimeTable.Cols.UUID, crime.getId().toString());
         values.put(CrimeTable.Cols.UUID, crime.getId().toString());
         values.put(CrimeTable.Cols.TITLE, crime.getTitle());
+        values.put(CrimeTable.Cols.PLACE, crime.getPlace());
+        values.put(CrimeTable.Cols.DETAILS, crime.getDetails());
         values.put(CrimeTable.Cols.DATE, crime.getDate().getTime());
         values.put(CrimeTable.Cols.SOLVED, crime.isSolved() ? 1 : 0);
         values.put(CrimeTable.Cols.DISLIKED, crime.isDisliked() ? 1 : 0);

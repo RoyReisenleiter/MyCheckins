@@ -55,6 +55,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/crime_title_hint"/>
+
+            <EditText
+                android:id="@+id/place_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/place_hint"/>
+
+            <EditText
+                android:id="@+id/details_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/detail_hint"/>
         </LinearLayout>
 
 
@@ -73,8 +85,8 @@
 
     <Button
         android:id="@+id/crime_suspect"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:text="@string/crime_suspect_text"/>
 
     <Button
