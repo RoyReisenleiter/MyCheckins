@@ -16,7 +16,6 @@ import java.util.UUID;
 public class CheckinsLab {
     private static CheckinsLab sCheckinsLab;
 
-    //private List<Checkins> mCrimes;//comment this out
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
@@ -31,14 +30,6 @@ public class CheckinsLab {
         mContext = context.getApplicationContext();
         mDatabase = new CheckinsBaseHelper(mContext)
                 .getWritableDatabase();
-        //mCrimes = new ArrayList<>();
-        /*for (int i = 0; i < 100; i++) {
-            Checkins crime = new Checkins();
-            crime.setTitle("Checkins #" + i);
-            crime.setLiked(i % 2 == 0); // every other one
-            mCrimes.add(crime);
-        }*/
-
     }
 
     public File getPhotoFile(Checkins checkins) {
@@ -46,15 +37,14 @@ public class CheckinsLab {
         return new File(filesDir, checkins.getPhotoFilename());
     }
 
-    public void addCrime(Checkins c) {
-        //mCrimes.add(c);
+    public void addCheckin(Checkins c) {
         ContentValues values = getContentValues(c);
 
         mDatabase.insert(CheckinsTable.NAME, null, values);
     }
 
     //stuff for delete crime
-    public void deleteCrime(Checkins c) {
+    public void deleteCheckin(Checkins c) {
         mDatabase.delete(
                 CheckinsTable.NAME,
                 CheckinsTable.Cols.UUID + "=?",
@@ -64,12 +54,10 @@ public class CheckinsLab {
     }
 
 
-    public List<Checkins> getCrimes() {
-        //return mCrimes;
-        //return new ArrayList<>();
+    public List<Checkins> getCheckins() {
         List<Checkins> checkins = new ArrayList<>();
 
-        CheckinsCursorWrapper cursor = queryCrimes(null, null);
+        CheckinsCursorWrapper cursor = queryCheckins(null, null);
 
         try {
             cursor.moveToFirst();
@@ -83,14 +71,8 @@ public class CheckinsLab {
         return checkins;
     }
 
-    public Checkins getCrime(UUID id) {
-        /*for (Checkins crime : mCrimes) {
-            if (crime.getId().equals(id)) {
-                return crime;
-            }
-        }*/
-        //return null;
-        CheckinsCursorWrapper cursor = queryCrimes(
+    public Checkins getCheckin(UUID id) {
+        CheckinsCursorWrapper cursor = queryCheckins(
                 CheckinsTable.Cols.UUID + " = ?",
                 new String[] { id.toString() }
         );
@@ -107,7 +89,7 @@ public class CheckinsLab {
 
     }
 
-    public void updateCrime(Checkins checkins){
+    public void updateCheckin(Checkins checkins){
         String uuidString = checkins.getId().toString();
         ContentValues values = getContentValues(checkins);
 
@@ -116,10 +98,11 @@ public class CheckinsLab {
                 new String[] {uuidString});
     }
 
-    private CheckinsCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
+    private CheckinsCursorWrapper queryCheckins(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 CheckinsTable.NAME,
-                null, //columns - null selects all columns
+                null, //columns - nul
+                // l selects all columns
                 whereClause,
                 whereArgs,
                 null, //groupBy

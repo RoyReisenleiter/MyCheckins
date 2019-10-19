@@ -14,18 +14,18 @@ import java.util.UUID;
 
 public class CheckinsActivity extends SingleFragmentActivity {
 
-    public static final String EXTRA_CRIME_ID = "com.bignerdranch.android.criminalintent.crime_id";
+    public static final String EXTRA_CHECKIN_ID = "task2.task2.checkin_id";
     public static final int REQUEST_ERROR = 0;
 
-    public static Intent newIntent(Context packageContext, UUID crimeId) {
+    public static Intent newIntent(Context packageContext, UUID checkinId) {
         Intent intent = new Intent(packageContext, CheckinsActivity.class);
-        intent.putExtra(EXTRA_CRIME_ID, crimeId);
+        intent.putExtra(EXTRA_CHECKIN_ID, checkinId);
         return intent;
     }
 
     /*public static final Intent newDelIntent(Context packageContext, UUID crimeId){
         Intent delIntent = new Intent(packageContext, CheckinsActivity.class);
-        delIntent.removeExtra(EXTRA_CRIME_ID);
+        delIntent.removeExtra(EXTRA_CHECKIN_ID);
         return delIntent;
     }*/
 

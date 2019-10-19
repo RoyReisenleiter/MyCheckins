@@ -91,9 +91,9 @@ public class CheckinsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //mCheckins = new Checkins();
-        UUID crimeId = (UUID) getActivity().getIntent()
-                .getSerializableExtra(CheckinsActivity.EXTRA_CRIME_ID);
-        mCheckins = CheckinsLab.get(getActivity()).getCrime(crimeId);
+        UUID checkinId = (UUID) getActivity().getIntent()
+                .getSerializableExtra(CheckinsActivity.EXTRA_CHECKIN_ID);
+        mCheckins = CheckinsLab.get(getActivity()).getCheckin(checkinId);
         mPhotoFile = CheckinsLab.get(getActivity()).getPhotoFile(mCheckins);
         mClient = new GoogleApiClient.Builder(getActivity())
                 .addApi(LocationServices.API)
@@ -147,7 +147,7 @@ public class CheckinsFragment extends Fragment {
         super.onPause();
 
         CheckinsLab.get(getActivity())
-                .updateCrime(mCheckins);
+                .updateCheckin(mCheckins);
     }
 
 
@@ -199,7 +199,7 @@ public class CheckinsFragment extends Fragment {
             mContactButton.setEnabled(false);
         }
 
-        mPhotoButton = (ImageButton) v.findViewById(R.id.crime_camera);
+        mPhotoButton = (ImageButton) v.findViewById(R.id.checkin_camera);
         final Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         boolean canTakePhoto = mPhotoFile != null &&
@@ -231,7 +231,7 @@ public class CheckinsFragment extends Fragment {
         updatePhotoView();
 
 
-        mTitleField = (EditText) v.findViewById(R.id.crime_title);
+        mTitleField = (EditText) v.findViewById(R.id.checkin_title);
         mTitleField.setText(mCheckins.getTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
             @Override
@@ -294,7 +294,7 @@ public class CheckinsFragment extends Fragment {
         mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CheckinsLab.get(getActivity()).deleteCrime(mCheckins);
+                CheckinsLab.get(getActivity()).deleteCheckin(mCheckins);
                 getActivity().finish();
             }
         });
@@ -356,7 +356,7 @@ public class CheckinsFragment extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("text/plain");
-                i.putExtra(Intent.EXTRA_TEXT, getCrimeReport());
+                i.putExtra(Intent.EXTRA_TEXT, getCheckinReport());
                 i.putExtra(Intent.EXTRA_SUBJECT,
                         getString(R.string.activity_report_subject));
                 i = Intent.createChooser(i, getString(R.string.send_report));
@@ -436,7 +436,7 @@ public class CheckinsFragment extends Fragment {
     }
 
 
-    private String getCrimeReport() {
+    private String getCheckinReport() {
         String solvedString = null;
         if (mCheckins.isLiked()){
             solvedString = getString(R.string.activity_report_solved);

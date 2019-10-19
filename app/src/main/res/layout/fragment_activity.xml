@@ -30,7 +30,7 @@
                 android:scaleType="centerInside" />
 
             <ImageButton
-                android:id="@+id/crime_camera"
+                android:id="@+id/checkin_camera"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/ic_menu_camera" />
@@ -51,7 +51,7 @@
 
 
             <EditText
-            android:id="@+id/crime_title"
+            android:id="@+id/checkin_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/crime_title_hint"/>

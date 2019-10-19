@@ -42,7 +42,7 @@ public class CheckinsListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_activity_list, container, false);
 
         mCrimeRecyclerView = (RecyclerView) view
-                .findViewById(R.id.crime_recycler_view);
+                .findViewById(R.id.checkin_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         if (savedInstanceState != null) {
@@ -58,7 +58,7 @@ public class CheckinsListFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.fragment_crime_list, menu);
+        inflater.inflate(R.menu.fragment_checkin_list, menu);
 
         MenuItem subtitleItem = menu.findItem(R.id.show_subtitle);
         if (mSubtitleVisible) {
@@ -72,9 +72,9 @@ public class CheckinsListFragment extends Fragment {
         @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.new_crime:
+            case R.id.new_checkin:
                 Checkins checkins = new Checkins();
-                CheckinsLab.get(getActivity()).addCrime(checkins);
+                CheckinsLab.get(getActivity()).addCheckin(checkins);
                 Intent intent = CheckinsActivity
                         .newIntent(getActivity(), checkins.getId());
                 startActivity(intent);
@@ -92,7 +92,7 @@ public class CheckinsListFragment extends Fragment {
             /*case R.id.delete_item:
                 Checkins mCheckins = new Checkins();
                 //CheckinsLab crimeLab = CheckinsLab.get(getActivity());
-                CheckinsLab.get(getActivity()).deleteCrime(mCheckins);
+                CheckinsLab.get(getActivity()).deleteCheckin(mCheckins);
                 Intent del = CheckinsActivity
                         .newIntent(getActivity(), mCheckins.getId());
                 startActivity(del);
@@ -105,7 +105,7 @@ public class CheckinsListFragment extends Fragment {
 
     private void updateSubtitle(){
         CheckinsLab checkinsLab = CheckinsLab.get(getActivity());
-        int crimeCount = checkinsLab.getCrimes().size();
+        int crimeCount = checkinsLab.getCheckins().size();
         String subtitle = getString(R.string.subtitle_format, crimeCount);
 
         if (!mSubtitleVisible) {
@@ -118,7 +118,7 @@ public class CheckinsListFragment extends Fragment {
 
     private void updateUI() {
         CheckinsLab checkinsLab = CheckinsLab.get(getActivity());
-        List<Checkins> checkins = checkinsLab.getCrimes();
+        List<Checkins> checkins = checkinsLab.getCheckins();
 
         if (mAdapter == null){
             mAdapter = new CrimeAdapter(checkins);
@@ -150,7 +150,7 @@ public class CheckinsListFragment extends Fragment {
             super (inflater.inflate(R.layout.list_item_activity, parent, false));
             itemView.setOnClickListener(this);
 
-            mTitleTextView = (TextView) itemView.findViewById(R.id.crime_title);
+            mTitleTextView = (TextView) itemView.findViewById(R.id.checkin_title);
             mDetailsTitleView = (TextView) itemView.findViewById(R.id.details_title);
             mPlaceTitleView = (TextView) itemView.findViewById(R.id.place_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.activity_date);
