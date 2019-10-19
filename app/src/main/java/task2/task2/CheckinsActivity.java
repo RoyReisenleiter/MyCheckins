@@ -12,19 +12,19 @@ import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.util.UUID;
 
-public class CrimeActivity extends SingleFragmentActivity {
+public class CheckinsActivity extends SingleFragmentActivity {
 
     public static final String EXTRA_CRIME_ID = "com.bignerdranch.android.criminalintent.crime_id";
     public static final int REQUEST_ERROR = 0;
 
     public static Intent newIntent(Context packageContext, UUID crimeId) {
-        Intent intent = new Intent(packageContext, CrimeActivity.class);
+        Intent intent = new Intent(packageContext, CheckinsActivity.class);
         intent.putExtra(EXTRA_CRIME_ID, crimeId);
         return intent;
     }
 
     /*public static final Intent newDelIntent(Context packageContext, UUID crimeId){
-        Intent delIntent = new Intent(packageContext, CrimeActivity.class);
+        Intent delIntent = new Intent(packageContext, CheckinsActivity.class);
         delIntent.removeExtra(EXTRA_CRIME_ID);
         return delIntent;
     }*/
@@ -38,7 +38,7 @@ public class CrimeActivity extends SingleFragmentActivity {
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
         if (fragment == null){
-            fragment = new CrimeFragment();
+            fragment = new CheckinsFragment();
             fm.beginTransaction()
                     .add(R.id.fragment_container, fragment)
                     .commit();
@@ -47,7 +47,7 @@ public class CrimeActivity extends SingleFragmentActivity {
 
     @Override
     protected Fragment createFragment() {
-        return new CrimeFragment();
+        return new CheckinsFragment();
     }
 
     @Override

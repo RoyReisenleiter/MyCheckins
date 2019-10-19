@@ -1,6 +1,6 @@
 package task2.task2.database;
 
-import task2.task2.Crime;
+import task2.task2.Checkins;
 import task2.task2.database.CheckinsDbSchema.CrimeTable;
 import android.database.Cursor;
 import android.database.CursorWrapper;
@@ -13,7 +13,7 @@ public class CheckinsCursorWrapper extends CursorWrapper {
         super(cursor);
     }
 
-    public Crime getCrime() {
+    public Checkins getCrime() {
         String uuidString = getString(getColumnIndex(CrimeTable.Cols.UUID));
         String title = getString(getColumnIndex(CrimeTable.Cols.TITLE));
         String place = getString(getColumnIndex(CrimeTable.Cols.PLACE));
@@ -25,18 +25,18 @@ public class CheckinsCursorWrapper extends CursorWrapper {
         Double latitude = getDouble(getColumnIndex(CrimeTable.Cols.LATITUDE));
         Double longitude = getDouble(getColumnIndex(CrimeTable.Cols.LONGITUDE));
 
-        Crime crime = new Crime(UUID.fromString(uuidString));
-        crime.setTitle(title);
-        crime.setPlace(place);
-        crime.setDetails(details);
-        crime.setDate(new Date(date));
-        crime.setLiked(isLiked != 0);
-        crime.setDisliked(isDisliked != 0);
-        crime.setSuspect(suspect);
-        crime.setLongitude(longitude);
-        crime.setLatitude(latitude);
+        Checkins checkins = new Checkins(UUID.fromString(uuidString));
+        checkins.setTitle(title);
+        checkins.setPlace(place);
+        checkins.setDetails(details);
+        checkins.setDate(new Date(date));
+        checkins.setLiked(isLiked != 0);
+        checkins.setDisliked(isDisliked != 0);
+        checkins.setSuspect(suspect);
+        checkins.setLongitude(longitude);
+        checkins.setLatitude(latitude);
 
-        return crime;
+        return checkins;
 
         //return null;
     }

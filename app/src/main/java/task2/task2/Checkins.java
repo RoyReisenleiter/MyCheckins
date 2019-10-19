@@ -4,7 +4,7 @@ package task2.task2;
 import java.util.Date;
 import java.util.UUID;
 
-public class Crime {
+public class Checkins {
 
     private UUID mId;
     private String mTitle;
@@ -17,13 +17,13 @@ public class Crime {
     private Double mLatitude;
     private Double mLongitude;
 
-    public Crime() {
+    public Checkins() {
         this(UUID.randomUUID());
         //mIdr = UUID.randomUUID();
         //mDate = new Date();
     }
 
-    public Crime(UUID id) {
+    public Checkins(UUID id) {
         mId = id;
         mDate = new Date();
     }

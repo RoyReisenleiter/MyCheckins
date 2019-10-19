@@ -18,16 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import static task2.task2.CrimeActivity.newIntent;
+import static task2.task2.CheckinsActivity.newIntent;
 
-public class CrimeListFragment extends Fragment {
+public class CheckinsListFragment extends Fragment {
 
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
     private boolean mSubtitleVisible;
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
     private Button mDeleteButton;
-    private Crime mCrime;
+    private Checkins mCheckins;
 
 
     @Override
@@ -73,10 +73,10 @@ public class CrimeListFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.new_crime:
-                Crime crime = new Crime();
-                CrimeLab.get(getActivity()).addCrime(crime);
-                Intent intent = CrimeActivity
-                        .newIntent(getActivity(), crime.getId());
+                Checkins checkins = new Checkins();
+                CheckinsLab.get(getActivity()).addCrime(checkins);
+                Intent intent = CheckinsActivity
+                        .newIntent(getActivity(), checkins.getId());
                 startActivity(intent);
                 return true;
             case R.id.show_subtitle:
@@ -90,11 +90,11 @@ public class CrimeListFragment extends Fragment {
                 startActivity(i);
                 return true;
             /*case R.id.delete_item:
-                Crime mCrime = new Crime();
-                //CrimeLab crimeLab = CrimeLab.get(getActivity());
-                CrimeLab.get(getActivity()).deleteCrime(mCrime);
-                Intent del = CrimeActivity
-                        .newIntent(getActivity(), mCrime.getId());
+                Checkins mCheckins = new Checkins();
+                //CheckinsLab crimeLab = CheckinsLab.get(getActivity());
+                CheckinsLab.get(getActivity()).deleteCrime(mCheckins);
+                Intent del = CheckinsActivity
+                        .newIntent(getActivity(), mCheckins.getId());
                 startActivity(del);
                 mAdapter.notifyDataSetChanged();
                 updateUI();*/
@@ -104,8 +104,8 @@ public class CrimeListFragment extends Fragment {
     }
 
     private void updateSubtitle(){
-        CrimeLab crimeLab = CrimeLab.get(getActivity());
-        int crimeCount = crimeLab.getCrimes().size();
+        CheckinsLab checkinsLab = CheckinsLab.get(getActivity());
+        int crimeCount = checkinsLab.getCrimes().size();
         String subtitle = getString(R.string.subtitle_format, crimeCount);
 
         if (!mSubtitleVisible) {
@@ -117,20 +117,20 @@ public class CrimeListFragment extends Fragment {
     }
 
     private void updateUI() {
-        CrimeLab crimeLab = CrimeLab.get(getActivity());
-        List<Crime> crimes = crimeLab.getCrimes();
+        CheckinsLab checkinsLab = CheckinsLab.get(getActivity());
+        List<Checkins> checkins = checkinsLab.getCrimes();
 
         if (mAdapter == null){
-            mAdapter = new CrimeAdapter(crimes);
+            mAdapter = new CrimeAdapter(checkins);
             mCrimeRecyclerView.setAdapter(mAdapter);
         }else{
-            mAdapter.setCrimes(crimes);
+            mAdapter.setCheckins(checkins);
             mAdapter.notifyDataSetChanged();
         }
 
         updateSubtitle();
 
-        //mAdapter = new CrimeAdapter(crimes);
+        //mAdapter = new CrimeAdapter(checkins);
         //mCrimeRecyclerView.setAdapter(mAdapter);
     }
 
@@ -141,7 +141,7 @@ public class CrimeListFragment extends Fragment {
         private TextView mDateTextView;
         private TextView mPlaceTitleView;
         private TextView mDetailsTitleView;
-        private Crime mCrime;
+        private Checkins mCheckins;
         private ImageView mLikedImageView;
         private ImageView mDislikedImageView;
 
@@ -151,38 +151,38 @@ public class CrimeListFragment extends Fragment {
             itemView.setOnClickListener(this);
 
             mTitleTextView = (TextView) itemView.findViewById(R.id.crime_title);
-            //mDetailsTitleView = (TextView) itemView.findViewById(R.id.details_title);
+            mDetailsTitleView = (TextView) itemView.findViewById(R.id.details_title);
             mPlaceTitleView = (TextView) itemView.findViewById(R.id.place_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.activity_date);
             mLikedImageView = (ImageView) itemView.findViewById(R.id.activity_solved);
             mDislikedImageView = (ImageView) itemView.findViewById(R.id.dislike);
         }
 
-        public void bind(Crime crime) {
-            mCrime = crime;
-            mTitleTextView.setText(mCrime.getTitle());
-            //mDetailsTitleView.setText(mCrime.getDetails());
-            mPlaceTitleView.setText(mCrime.getPlace());
-            mDateTextView.setText(mCrime.getDate().toString());
-            mLikedImageView.setVisibility(crime.isLiked() ? View.VISIBLE : View.GONE);
-            mDislikedImageView.setVisibility(crime.isDisliked() ? View.VISIBLE : View.GONE);
+        public void bind(Checkins checkins) {
+            mCheckins = checkins;
+            mTitleTextView.setText(mCheckins.getTitle());
+            mDetailsTitleView.setText(mCheckins.getDetails());
+            mPlaceTitleView.setText(mCheckins.getPlace());
+            mDateTextView.setText(mCheckins.getDate().toString());
+            mLikedImageView.setVisibility(checkins.isLiked() ? View.VISIBLE : View.GONE);
+            mDislikedImageView.setVisibility(checkins.isDisliked() ? View.VISIBLE : View.GONE);
         }
 
         @Override
         public void onClick(View view) {
             /*Toast.makeText(getActivity(),
-                    mCrime.getTitle() + "clicked!", Toast.LENGTH_SHORT)
+                    mCheckins.getTitle() + "clicked!", Toast.LENGTH_SHORT)
                     .show();*/
-            //Intent intent = new Intent(getActivity(), CrimeActivity.class);
-            Intent intent = newIntent(getActivity(), mCrime.getId());
+            //Intent intent = new Intent(getActivity(), CheckinsActivity.class);
+            Intent intent = newIntent(getActivity(), mCheckins.getId());
             startActivity(intent);
         }
     }
 
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
-        private List<Crime> mCrimes;
-        public CrimeAdapter(List<Crime> crimes) {
-            mCrimes = crimes;
+        private List<Checkins> mCheckins;
+        public CrimeAdapter(List<Checkins> checkins) {
+            mCheckins = checkins;
         }
 
 
@@ -195,19 +195,19 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(CrimeHolder holder, int position) {
-            Crime crime = mCrimes.get(position);
-            holder.bind(crime);
+            Checkins checkins = mCheckins.get(position);
+            holder.bind(checkins);
 
         }
 
 
         @Override
         public int getItemCount() {
-            return mCrimes.size();
+            return mCheckins.size();
         }
 
-        public void setCrimes(List<Crime> crimes) {
-            mCrimes = crimes;
+        public void setCheckins(List<Checkins> checkins) {
+            mCheckins = checkins;
         }
 
 

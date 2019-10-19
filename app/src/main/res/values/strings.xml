@@ -15,7 +15,7 @@
     <string name="crime_suspect_text">Choose Suspect</string>
     <string name="activity_report_text">Share</string>
     <string name="activity_report">%1$s!
- The crime was discovered on %2$s. %3$s, and %4$s
+ The checkins was discovered on %2$s. %3$s, and %4$s
  </string>
     <string name="activity_report_solved">The case is solved</string>
     <string name="activity_report_unsolved">The case is not solved</string>

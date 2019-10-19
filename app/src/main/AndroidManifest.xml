@@ -44,7 +44,7 @@
             android:label="@string/title_activity_maps">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="task2.task2.CrimeActivity" />
+                android:value="task2.task2.CheckinsActivity" />
 
 
         </activity>
@@ -61,9 +61,9 @@
         </provider>
 
         <activity
-            android:name=".CrimeActivity"
-            android:parentActivityName=".CrimeListActivity"></activity>
-        <activity android:name=".CrimeListActivity">
+            android:name=".CheckinsActivity"
+            android:parentActivityName=".CheckinsListActivity"></activity>
+        <activity android:name=".CheckinsListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
