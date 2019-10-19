@@ -1,6 +1,6 @@
 package task2.task2.database;
 
-import task2.task2.database.CheckinsDbSchema.CrimeTable;
+import task2.task2.database.CheckinsDbSchema.CheckinsTable;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CheckinsBaseHelper extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
-    private static final String DATABASE_NAME = "crimeBase.db";
+    private static final String DATABASE_NAME = "checkinBase.db";
 
     public CheckinsBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -16,18 +16,18 @@ public class CheckinsBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + CrimeTable.NAME  + "(" +
+        db.execSQL("create table " + CheckinsTable.NAME  + "(" +
                 " _id integer primary key autoincrement, " +
-                CrimeTable.Cols.UUID + ", " +
-                CrimeTable.Cols.TITLE + ", " +
-                CrimeTable.Cols.DATE + ", " +
-                CrimeTable.Cols.LIKED + ", " +
-                CrimeTable.Cols.DISLIKED + ", " +
-                CrimeTable.Cols.SUSPECT + ", " +
-                CrimeTable.Cols.PLACE + "," +
-                CrimeTable.Cols.DETAILS + "," +
-                CrimeTable.Cols.LONGITUDE + "," +
-                CrimeTable.Cols.LATITUDE +
+                CheckinsTable.Cols.UUID + ", " +
+                CheckinsTable.Cols.TITLE + ", " +
+                CheckinsTable.Cols.DATE + ", " +
+                CheckinsTable.Cols.LIKED + ", " +
+                CheckinsTable.Cols.DISLIKED + ", " +
+                CheckinsTable.Cols.SUSPECT + ", " +
+                CheckinsTable.Cols.PLACE + "," +
+                CheckinsTable.Cols.DETAILS + "," +
+                CheckinsTable.Cols.LONGITUDE + "," +
+                CheckinsTable.Cols.LATITUDE +
                 ")"
 
         );

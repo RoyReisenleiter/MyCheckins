@@ -2,7 +2,7 @@ package task2.task2;
 
 import task2.task2.database.CheckinsBaseHelper;
 import task2.task2.database.CheckinsCursorWrapper;
-import task2.task2.database.CheckinsDbSchema.CrimeTable;
+import task2.task2.database.CheckinsDbSchema.CheckinsTable;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -50,14 +50,14 @@ public class CheckinsLab {
         //mCrimes.add(c);
         ContentValues values = getContentValues(c);
 
-        mDatabase.insert(CrimeTable.NAME, null, values);
+        mDatabase.insert(CheckinsTable.NAME, null, values);
     }
 
     //stuff for delete crime
     public void deleteCrime(Checkins c) {
         mDatabase.delete(
-                CrimeTable.NAME,
-                CrimeTable.Cols.UUID + "=?",
+                CheckinsTable.NAME,
+                CheckinsTable.Cols.UUID + "=?",
                 new String[] {c.getId().toString()}
         );
 
@@ -74,7 +74,7 @@ public class CheckinsLab {
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                checkins.add(cursor.getCrime());
+                checkins.add(cursor.getCheckin());
                 cursor.moveToNext();
             }
         } finally {
@@ -91,7 +91,7 @@ public class CheckinsLab {
         }*/
         //return null;
         CheckinsCursorWrapper cursor = queryCrimes(
-                CrimeTable.Cols.UUID + " = ?",
+                CheckinsTable.Cols.UUID + " = ?",
                 new String[] { id.toString() }
         );
         try {
@@ -99,7 +99,7 @@ public class CheckinsLab {
                 return null;
             }
             cursor.moveToFirst();
-            return cursor.getCrime();
+            return cursor.getCheckin();
         } finally {
             cursor.close();
         }
@@ -111,14 +111,14 @@ public class CheckinsLab {
         String uuidString = checkins.getId().toString();
         ContentValues values = getContentValues(checkins);
 
-        mDatabase.update(CrimeTable.NAME, values,
-                CrimeTable.Cols.UUID + " = ?",
+        mDatabase.update(CheckinsTable.NAME, values,
+                CheckinsTable.Cols.UUID + " = ?",
                 new String[] {uuidString});
     }
 
     private CheckinsCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
-                CrimeTable.NAME,
+                CheckinsTable.NAME,
                 null, //columns - null selects all columns
                 whereClause,
                 whereArgs,
@@ -133,17 +133,17 @@ public class CheckinsLab {
 
     private static ContentValues getContentValues(Checkins checkins) {
         ContentValues values = new ContentValues();
-        values.put(CrimeTable.Cols.UUID, checkins.getId().toString());
-        values.put(CrimeTable.Cols.UUID, checkins.getId().toString());
-        values.put(CrimeTable.Cols.TITLE, checkins.getTitle());
-        values.put(CrimeTable.Cols.PLACE, checkins.getPlace());
-        values.put(CrimeTable.Cols.DETAILS, checkins.getDetails());
-        values.put(CrimeTable.Cols.DATE, checkins.getDate().getTime());
-        values.put(CrimeTable.Cols.LIKED, checkins.isLiked() ? 1 : 0);
-        values.put(CrimeTable.Cols.DISLIKED, checkins.isDisliked() ? 1 : 0);
-        values.put(CrimeTable.Cols.SUSPECT, checkins.getSuspect());
-        values.put(CrimeTable.Cols.LONGITUDE, checkins.getLongitude());
-        values.put(CrimeTable.Cols.LATITUDE, checkins.getLatitude());
+        values.put(CheckinsTable.Cols.UUID, checkins.getId().toString());
+        values.put(CheckinsTable.Cols.UUID, checkins.getId().toString());
+        values.put(CheckinsTable.Cols.TITLE, checkins.getTitle());
+        values.put(CheckinsTable.Cols.PLACE, checkins.getPlace());
+        values.put(CheckinsTable.Cols.DETAILS, checkins.getDetails());
+        values.put(CheckinsTable.Cols.DATE, checkins.getDate().getTime());
+        values.put(CheckinsTable.Cols.LIKED, checkins.isLiked() ? 1 : 0);
+        values.put(CheckinsTable.Cols.DISLIKED, checkins.isDisliked() ? 1 : 0);
+        values.put(CheckinsTable.Cols.SUSPECT, checkins.getSuspect());
+        values.put(CheckinsTable.Cols.LONGITUDE, checkins.getLongitude());
+        values.put(CheckinsTable.Cols.LATITUDE, checkins.getLatitude());
 
         return values;
 

@@ -2,8 +2,8 @@ package task2.task2.database;
 
 public class CheckinsDbSchema {
 
-    public static final class CrimeTable {
-        public static final String NAME = "crimes";
+    public static final class CheckinsTable {
+        public static final String NAME = "checkins";
 
         public static final class Cols {
             public static final String UUID = "uuid";
