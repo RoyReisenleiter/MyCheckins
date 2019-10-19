@@ -1,15 +1,15 @@
 package task2.task2.database;
 
 import task2.task2.Crime;
-import task2.task2.database.CrimeDbSchema.CrimeTable;
+import task2.task2.database.CheckinsDbSchema.CrimeTable;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import java.util.Date;
 import java.util.UUID;
 
-public class CrimeCursorWrapper extends CursorWrapper {
-    public CrimeCursorWrapper(Cursor cursor) {
+public class CheckinsCursorWrapper extends CursorWrapper {
+    public CheckinsCursorWrapper(Cursor cursor) {
         super(cursor);
     }
 
@@ -19,7 +19,7 @@ public class CrimeCursorWrapper extends CursorWrapper {
         String place = getString(getColumnIndex(CrimeTable.Cols.PLACE));
         String details = getString(getColumnIndex(CrimeTable.Cols.DETAILS));
         long date = getLong(getColumnIndex(CrimeTable.Cols.DATE));
-        int isSolved = getInt(getColumnIndex(CrimeTable.Cols.SOLVED));
+        int isLiked = getInt(getColumnIndex(CrimeTable.Cols.LIKED));
         String suspect = getString(getColumnIndex(CrimeTable.Cols.SUSPECT));
         int isDisliked = getInt(getColumnIndex(CrimeTable.Cols.DISLIKED));
         Double latitude = getDouble(getColumnIndex(CrimeTable.Cols.LATITUDE));
@@ -30,7 +30,7 @@ public class CrimeCursorWrapper extends CursorWrapper {
         crime.setPlace(place);
         crime.setDetails(details);
         crime.setDate(new Date(date));
-        crime.setSolved(isSolved != 0);
+        crime.setLiked(isLiked != 0);
         crime.setDisliked(isDisliked != 0);
         crime.setSuspect(suspect);
         crime.setLongitude(longitude);

@@ -1,20 +1,17 @@
 package task2.task2;
 
-import task2.task2.database.CrimeBaseHelper;
-import task2.task2.database.CrimeCursorWrapper;
-import task2.task2.database.CrimeDbSchema.CrimeTable;
+import task2.task2.database.CheckinsBaseHelper;
+import task2.task2.database.CheckinsCursorWrapper;
+import task2.task2.database.CheckinsDbSchema.CrimeTable;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import static android.content.ContentValues.TAG;
 
 public class CrimeLab {
     private static CrimeLab sCrimeLab;
@@ -32,13 +29,13 @@ public class CrimeLab {
 
     private CrimeLab(Context context) {
         mContext = context.getApplicationContext();
-        mDatabase = new CrimeBaseHelper(mContext)
+        mDatabase = new CheckinsBaseHelper(mContext)
                 .getWritableDatabase();
         //mCrimes = new ArrayList<>();
         /*for (int i = 0; i < 100; i++) {
             Crime crime = new Crime();
             crime.setTitle("Crime #" + i);
-            crime.setSolved(i % 2 == 0); // every other one
+            crime.setLiked(i % 2 == 0); // every other one
             mCrimes.add(crime);
         }*/
 
@@ -72,7 +69,7 @@ public class CrimeLab {
         //return new ArrayList<>();
         List<Crime> crimes = new ArrayList<>();
 
-        CrimeCursorWrapper cursor = queryCrimes(null, null);
+        CheckinsCursorWrapper cursor = queryCrimes(null, null);
 
         try {
             cursor.moveToFirst();
@@ -93,7 +90,7 @@ public class CrimeLab {
             }
         }*/
         //return null;
-        CrimeCursorWrapper cursor = queryCrimes(
+        CheckinsCursorWrapper cursor = queryCrimes(
                 CrimeTable.Cols.UUID + " = ?",
                 new String[] { id.toString() }
         );
@@ -119,7 +116,7 @@ public class CrimeLab {
                 new String[] {uuidString});
     }
 
-    private CrimeCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
+    private CheckinsCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 CrimeTable.NAME,
                 null, //columns - null selects all columns
@@ -131,7 +128,7 @@ public class CrimeLab {
         );
 
         //return cursor;
-        return new CrimeCursorWrapper(cursor);
+        return new CheckinsCursorWrapper(cursor);
     }
 
     private static ContentValues getContentValues(Crime crime) {
@@ -142,7 +139,7 @@ public class CrimeLab {
         values.put(CrimeTable.Cols.PLACE, crime.getPlace());
         values.put(CrimeTable.Cols.DETAILS, crime.getDetails());
         values.put(CrimeTable.Cols.DATE, crime.getDate().getTime());
-        values.put(CrimeTable.Cols.SOLVED, crime.isSolved() ? 1 : 0);
+        values.put(CrimeTable.Cols.LIKED, crime.isLiked() ? 1 : 0);
         values.put(CrimeTable.Cols.DISLIKED, crime.isDisliked() ? 1 : 0);
         values.put(CrimeTable.Cols.SUSPECT, crime.getSuspect());
         values.put(CrimeTable.Cols.LONGITUDE, crime.getLongitude());

@@ -4,7 +4,6 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.CursorWrapper;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -14,9 +13,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import task2.task2.database.CrimeBaseHelper;
-import task2.task2.database.CrimeDbSchema;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 

@@ -11,7 +11,7 @@ public class Crime {
     private String mPlace;
     private String mDetails;
     private Date mDate;
-    private boolean mSolved;
+    private boolean mLiked;
     private boolean mDisliked;
     private String mSuspect;
     private Double mLatitude;
@@ -19,7 +19,7 @@ public class Crime {
 
     public Crime() {
         this(UUID.randomUUID());
-        //mId = UUID.randomUUID();
+        //mIdr = UUID.randomUUID();
         //mDate = new Date();
     }
 
@@ -62,12 +62,12 @@ public class Crime {
         mDate = date;
     }
 
-    public boolean isSolved() {
-        return mSolved;
+    public boolean isLiked() {
+        return mLiked;
     }
     public boolean isDisliked() { return mDisliked; }
-    public void setSolved(boolean solved) {
-        mSolved = solved;
+    public void setLiked(boolean solved) {
+        mLiked = solved;
     }
     public void setDisliked(boolean disliked) {
         mDisliked = disliked;

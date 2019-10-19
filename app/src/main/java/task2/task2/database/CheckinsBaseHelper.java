@@ -1,16 +1,16 @@
 package task2.task2.database;
 
-import task2.task2.database.CrimeDbSchema.CrimeTable;
+import task2.task2.database.CheckinsDbSchema.CrimeTable;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class CrimeBaseHelper extends SQLiteOpenHelper {
+public class CheckinsBaseHelper extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
     private static final String DATABASE_NAME = "crimeBase.db";
 
-    public CrimeBaseHelper(Context context) {
+    public CheckinsBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
 
@@ -21,7 +21,7 @@ public class CrimeBaseHelper extends SQLiteOpenHelper {
                 CrimeTable.Cols.UUID + ", " +
                 CrimeTable.Cols.TITLE + ", " +
                 CrimeTable.Cols.DATE + ", " +
-                CrimeTable.Cols.SOLVED + ", " +
+                CrimeTable.Cols.LIKED + ", " +
                 CrimeTable.Cols.DISLIKED + ", " +
                 CrimeTable.Cols.SUSPECT + ", " +
                 CrimeTable.Cols.PLACE + "," +
