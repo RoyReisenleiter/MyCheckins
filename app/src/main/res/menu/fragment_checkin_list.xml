@@ -7,8 +7,10 @@
         app:showAsAction="ifRoom|withText"/>
     <item
         android:id="@+id/show_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:title="@string/show_subtitle"
-        app:showAsAction="ifRoom"/>
+        />
 
     <item
     android:id="@+id/help"

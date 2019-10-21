@@ -9,8 +9,8 @@
     <string name="dislike">Click to dislike</string>
     <string name="date_picker_title">Date of activity:</string>
     <string name="new_activity">New</string>
-    <string name="show_subtitle">Show Subtitle</string>
-    <string name="hide_subtitle">Hide Subtitle</string>
+    <string name="show_subtitle">Show activity count</string>
+    <string name="hide_subtitle">Hide activity count</string>
     <string name="subtitle_format">%1$d activities</string>
     <string name="crime_suspect_text">Choose Suspect</string>
     <string name="activity_report_text">Share</string>

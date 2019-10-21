@@ -20,7 +20,6 @@ public class HelpWebPage extends AppCompatActivity {
     private ProgressBar mProgressBar;
 
 
-
     public static Intent webIntent(Context packageContext, String url) {
         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http:www.wikihow.com/Check-In-on_Facebook"));
         return i;
