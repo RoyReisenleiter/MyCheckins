@@ -121,8 +121,6 @@ public class CheckinsListFragment extends Fragment {
 
         updateSubtitle();
 
-        //mAdapter = new CheckinAdapter(checkins);
-        //mCheckinRecyclerView.setAdapter(mAdapter);
     }
 
 
@@ -161,10 +159,7 @@ public class CheckinsListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            /*Toast.makeText(getActivity(),
-                    mCheckins.getTitle() + "clicked!", Toast.LENGTH_SHORT)
-                    .show();*/
-            //Intent intent = new Intent(getActivity(), CheckinsActivity.class);
+
             Intent intent = newIntent(getActivity(), mCheckins.getId());
             startActivity(intent);
         }

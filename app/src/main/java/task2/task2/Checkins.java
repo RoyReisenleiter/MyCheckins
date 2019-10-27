@@ -1,6 +1,6 @@
 package task2.task2;
 //new version for task 2*
-// original package name: android.bignerdranch.criminalIntent
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -19,8 +19,7 @@ public class Checkins {
 
     public Checkins() {
         this(UUID.randomUUID());
-        //mIdr = UUID.randomUUID();
-        //mDate = new Date();
+
     }
 
     public Checkins(UUID id) {

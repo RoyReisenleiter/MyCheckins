@@ -90,7 +90,6 @@ public class CheckinsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //mCheckins = new Checkins();
         UUID checkinId = (UUID) getActivity().getIntent()
                 .getSerializableExtra(CheckinsActivity.EXTRA_CHECKIN_ID);
         mCheckins = CheckinsLab.get(getActivity()).getCheckin(checkinId);
@@ -227,7 +226,7 @@ public class CheckinsFragment extends Fragment {
             }
         });
 
-        mPhotoView = (ImageView) v.findViewById(R.id.receipt_photo);
+        mPhotoView = (ImageView) v.findViewById(R.id.checkin_photo);
         updatePhotoView();
 
 
@@ -309,16 +308,6 @@ public class CheckinsFragment extends Fragment {
                             mCheckins.getLongitude()));
         }
 
-        /*mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
-        mSolvedCheckBox.setChecked(mCheckins.isLiked());
-        mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mCheckins.setLiked(isChecked);
-            }
-
-        });*/
-
         mSolvedCheckBox = (CheckBox)v.findViewById(R.id.activity_solved);
         mSolvedCheckBox.setChecked(mCheckins.isLiked());
         mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -329,7 +318,6 @@ public class CheckinsFragment extends Fragment {
 
                 }
                 mCheckins.setLiked(isChecked);
-                //mSolvedCheckBox.setChecked(true);
 
 
             }
@@ -346,7 +334,6 @@ public class CheckinsFragment extends Fragment {
 
                 }
                 mCheckins.setDisliked(isChecked);
-                //mDislikeCheckBox.setChecked(true);
             }
 
         });
@@ -385,22 +372,18 @@ public class CheckinsFragment extends Fragment {
             updateDate();
         } else if (requestCode == REQUEST_CONTACT && data != null) {
             Uri contactUri = data.getData();
-// Specify which fields you want your query to return
-// values for
+
             String[] queryFields = new String[] {
                     ContactsContract.Contacts.DISPLAY_NAME
             };
-// Perform your query - the contactUri is like a "where"
-// clause here
+
             Cursor c = getActivity().getContentResolver()
                     .query(contactUri, queryFields, null, null, null);
             try {
-// Double-check that you actually got results
                 if (c.getCount() == 0) {
                     return;
                 }
-// Pull out the first column of the first row of data -
-// that is your suspect's name
+
                 c.moveToFirst();
                 String suspect = c.getString(0);
                 mCheckins.setSuspect(suspect);

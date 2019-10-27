@@ -42,7 +42,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mLatitude = extras.getDouble(EXTRA_LATITUDE);
             mLongitude = extras.getDouble(EXTRA_LONGITUDE);
         }
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -61,11 +60,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(pos, ZOOM_LEVEL);
         mMap.animateCamera(update);
 
-
-//        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
 

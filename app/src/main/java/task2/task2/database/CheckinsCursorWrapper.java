@@ -38,6 +38,5 @@ public class CheckinsCursorWrapper extends CursorWrapper {
 
         return checkins;
 
-        //return null;
     }
 }
